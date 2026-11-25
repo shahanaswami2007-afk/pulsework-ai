@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>System Status Checker</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        #banner {
+            background-color: lightblue;
+            padding: 20px;
+            margin: 20px auto;
+            width: 400px;
+            border-radius: 10px;
+            font-size: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>System Status Checker</h1>
+
+    <div id="banner">
+        Welcome! System is Checking...
+    </div>
+
+    <button onclick="checkStatus()">Check System Status</button>
+
+    <script>
+
+        // Arrow function to update banner
+        const updateBanner = (message, color) => {
+            document.getElementById("banner").innerHTML = message;
+            document.getElementById("banner").style.backgroundColor = color;
+        };
+
+        // Display welcome message when page loads
+        window.onload = () => {
+            updateBanner("Welcome! System is Checking...", "lightblue");
+        };
+
+        // Promise to check system status
+        const checkSystem = () => {
+            return new Promise((resolve, reject) => {
+
+                setTimeout(() => {
+                    let online = Math.random() > 0.5;
+
+                    if (online) {
+                        resolve("System is Online");
+                    } else {
+                        reject("System is Offline");
+                    }
+
+                }, 2000);
+
+            });
+        };
+
+        // Button click function
+        const checkStatus = () => {
+
+            updateBanner("System is Checking...", "yellow");
+
+            checkSystem()
+                .then((result) => {
+                    updateBanner(result, "lightgreen");
+                })
+                .catch((error) => {
+                    updateBanner(error, "lightcoral");
+                });
+
+        };
+
+    </script>
+
+</body>
+</html>
