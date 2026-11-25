@@ -1,0 +1,11 @@
+# Dependencies and build files
+node_modules/
+dist/
+
+# Backup and old practice project
+frontend/src-backup/
+frontend/frontend/
+
+# Editor files
+.vscode/
+.idea/
